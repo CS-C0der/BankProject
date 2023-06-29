@@ -1,7 +1,6 @@
 import lib.Bank;
 import lib.Utility;
-
-import java.sql.SQLOutput;
+import lib.FilialeDerBank;
 import java.util.ArrayList;
 
 public class Controller {
@@ -10,7 +9,7 @@ public class Controller {
 
         ArrayList <Bank> Datenbank = new ArrayList<>();
 
-        String eingehenderString = "Testbank";
+        String eingehenderString = "Volksbank";
 
         Bank Sparkasse = new Bank("Sparkasse");
         Datenbank.add(Sparkasse);
@@ -20,10 +19,8 @@ public class Controller {
             Datenbank.add(Volksbank);
         }
 
-
         System.out.println(Datenbank.get(0).nameDerBank);
         System.out.println(Datenbank.get(1).nameDerBank);
-
 
     }
 }

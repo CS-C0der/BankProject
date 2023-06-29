@@ -4,6 +4,8 @@ public class Bank {
 
     public String nameDerBank;
 
+    public Bank(){};
+
     public Bank(String nameDerBank_) {
         this.nameDerBank = nameDerBank_;
     }

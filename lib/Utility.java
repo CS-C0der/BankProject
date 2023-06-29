@@ -17,8 +17,6 @@ public class Utility {
 
     static public boolean checkIfNotUsed (String first, ArrayList<Bank> bank_) {
 
-        System.out.println(bank_);
-
         for (int i = 0; i < bank_.size(); i++) {
 
             String second = bank_.get(i).nameDerBank;
