@@ -1,34 +1,34 @@
 import lib.Bank;
 import lib.Utility;
-import lib.FilialeDerBank;
+import lib.branchOfBank;
 import java.util.ArrayList;
 
 public class Controller {
 
     public static void main(String[] args) {
 
-        ArrayList <Bank> Datenbank = new ArrayList<>();
+        ArrayList <Bank> Database = new ArrayList<>();
 
-        String eingehenderString = "Volksbank";
+        String incomingString = "Volksbank";
 
         Bank Sparkasse = new Bank("Sparkasse");
-        Datenbank.add(Sparkasse);
+        Database.add(Sparkasse);
 
-        if (Utility.checkIfNotUsed(eingehenderString, Datenbank)) {
-            Bank Volksbank = new Bank(eingehenderString);
-            Datenbank.add(Volksbank);
+        if (Utility.checkIfNotUsed(incomingString, Database)) {
+            Bank Volksbank = new Bank(incomingString);
+            Database.add(Volksbank);
         }
 
         System.out.println("Namen unserer Banken: ");
-        System.out.println(Datenbank.get(0).nameDerBank);
-        System.out.println(Datenbank.get(1).nameDerBank);
+        System.out.println(Database.get(0).nameOfBank);
+        System.out.println(Database.get(1).nameOfBank);
 
 
-        FilialeDerBank filialeAmPlatz = new FilialeDerBank("Platzfiliale", Sparkasse);
+        branchOfBank filialeAmPlatz = new branchOfBank("Platzfiliale", Sparkasse);
 
         System.out.println("Namen unserer Filialen: ");
-        System.out.println(filialeAmPlatz.getNameDerFiliale());
-        System.out.println(filialeAmPlatz.getNameDerBank());
+        System.out.println(filialeAmPlatz.getNameOfBranch());
+        System.out.println(filialeAmPlatz.getNameOfBank());
 
 
     }

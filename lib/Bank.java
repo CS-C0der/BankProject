@@ -2,21 +2,21 @@ package lib;
 
 public class Bank {
 
-    public String nameDerBank;
+    public String nameOfBank;
 
     public Bank(){};
 
-    public Bank(String nameDerBank_) {
-        this.nameDerBank = nameDerBank_;
+    public Bank(String nameOfBank_) {
+        this.nameOfBank = nameOfBank_;
     }
 
 
-    public String getNameDerBank() {
-        return nameDerBank;
+    public String getNameOfBank() {
+        return nameOfBank;
     }
 
-    public void setNameDerBank(String nameDerBank) {
-        this.nameDerBank = nameDerBank;
+    public void setNameOfBank(String nameOfBank) {
+        this.nameOfBank = nameOfBank;
     }
 
 }

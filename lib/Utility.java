@@ -19,7 +19,7 @@ public class Utility {
 
         for (int i = 0; i < bank_.size(); i++) {
 
-            String second = bank_.get(i).nameDerBank;
+            String second = bank_.get(i).nameOfBank;
 
             if (first == second) {
                 return false;
