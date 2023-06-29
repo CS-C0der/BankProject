@@ -19,8 +19,17 @@ public class Controller {
             Datenbank.add(Volksbank);
         }
 
+        System.out.println("Namen unserer Banken: ");
         System.out.println(Datenbank.get(0).nameDerBank);
         System.out.println(Datenbank.get(1).nameDerBank);
+
+
+        FilialeDerBank filialeAmPlatz = new FilialeDerBank("Platzfiliale", Sparkasse);
+
+        System.out.println("Namen unserer Filialen: ");
+        System.out.println(filialeAmPlatz.getNameDerFiliale());
+        System.out.println(filialeAmPlatz.getNameDerBank());
+
 
     }
 }

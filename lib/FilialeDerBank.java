@@ -6,8 +6,9 @@ public class FilialeDerBank extends Bank {
     private String IBAN;
     private String BIC;
 
-    public FilialeDerBank(String nameDerFiliale_){
+    public FilialeDerBank(String nameDerFiliale_, Bank bank_){
         this.nameDerFiliale = nameDerFiliale_;
+        this.nameDerBank = bank_.nameDerBank;
     }
 
 
