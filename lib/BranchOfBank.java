@@ -1,12 +1,12 @@
 package lib;
 
-public class branchOfBank extends Bank {
+public class BranchOfBank extends Bank {
 
     private String nameOfBranch;
     private String IBAN;
     private String BIC;
 
-    public branchOfBank(String nameOfBranch_, Bank bank_){
+    public BranchOfBank(String nameOfBranch_, Bank bank_){
         this.nameOfBranch = nameOfBranch_;
         this.nameOfBank = bank_.nameOfBank;
     }

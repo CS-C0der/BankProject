@@ -1,6 +1,7 @@
+import lib.ATMOfBank;
 import lib.Bank;
 import lib.Utility;
-import lib.branchOfBank;
+import lib.BranchOfBank;
 import java.util.ArrayList;
 
 public class Controller {
@@ -24,12 +25,17 @@ public class Controller {
         System.out.println(Database.get(1).nameOfBank);
 
 
-        branchOfBank filialeAmPlatz = new branchOfBank("Platzfiliale", Sparkasse);
+        BranchOfBank filialeAmPlatz = new BranchOfBank("Platzfiliale", Sparkasse);
 
-        System.out.println("Namen unserer Filialen: ");
+        System.out.println("Name unserer Filiale: ");
         System.out.println(filialeAmPlatz.getNameOfBranch());
         System.out.println(filialeAmPlatz.getNameOfBank());
 
+        ATMOfBank atmAmPlatz = new ATMOfBank(1, Sparkasse);
+
+        System.out.println("Nummer unseres Bankautomaten: ");
+        System.out.println(atmAmPlatz.getNrOfATM());
+        System.out.println(atmAmPlatz.getNameOfBank());
 
     }
 }
