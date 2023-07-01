@@ -2,7 +2,7 @@ package lib;
 
 public class Bank {
 
-    public String nameOfBank;
+    private String nameOfBank;
 
     public Bank(){};
 
