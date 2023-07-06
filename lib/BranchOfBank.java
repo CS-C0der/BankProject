@@ -7,9 +7,9 @@ public class BranchOfBank {
     private String IBAN;
     private String BIC;
 
-    public BranchOfBank(String nameOfBranch_, Bank bank_){
+    public BranchOfBank(String nameOfBranch_, BankInstitution bank_Institution_){
         this.nameOfBranch = nameOfBranch_;
-        this.nameOfBank = bank_.nameOfBank;
+        this.nameOfBank = bank_Institution_.nameOfBank;
     }
 
     public String getNameOfBank() {

@@ -15,11 +15,11 @@ public class Utility {
         return true;
     }
 
-    static public boolean checkIfNotUsed (String first, ArrayList<Bank> bank_) {
+    static public boolean checkIfNotUsed (String first, ArrayList<BankInstitution> bank_Institution_) {
 
-        for (int i = 0; i < bank_.size(); i++) {
+        for (int i = 0; i < bank_Institution_.size(); i++) {
 
-            String second = bank_.get(i).nameOfBank;
+            String second = bank_Institution_.get(i).nameOfBank;
 
             if (first == second) {
                 return false;

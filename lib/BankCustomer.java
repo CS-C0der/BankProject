@@ -1,5 +1,7 @@
 package lib;
 
+import java.util.LinkedList;
+
 public class BankCustomer {
 
     private String nameOfBankCustomer;
@@ -10,9 +12,9 @@ public class BankCustomer {
 
     }
 
-    public void createNewAccount() {
-
-
+    public void createNewAccount(LinkedList list_) {
+        //CurrentAccount.setIdOfCurrentAccount(list_.size());
+        //resolve static/non-static issue here
     }
 
     public String getNameOfBankCustomer() {

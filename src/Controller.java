@@ -1,5 +1,5 @@
 import lib.ATMOfBank;
-import lib.Bank;
+import lib.BankInstitution;
 import lib.Utility;
 import lib.BranchOfBank;
 import java.util.ArrayList;
@@ -8,16 +8,16 @@ public class Controller {
 
     public static void main(String[] args) {
 
-        ArrayList <Bank> Database = new ArrayList<>();
+        ArrayList <BankInstitution> Database = new ArrayList<>();
 
         String incomingString = "Volksbank";
 
-        Bank Sparkasse = new Bank("Sparkasse");
+        BankInstitution Sparkasse = new BankInstitution("Sparkasse");
         Database.add(Sparkasse);
 
         if (Utility.checkIfNotUsed(incomingString, Database)) {
-            Bank Volksbank = new Bank(incomingString);
-            Database.add(Volksbank);
+            BankInstitution volksbank = new BankInstitution(incomingString);
+            Database.add(volksbank);
         }
 
         System.out.println("Namen unserer Banken: ");
