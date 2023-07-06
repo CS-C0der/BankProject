@@ -7,7 +7,7 @@ public class ATMOfBank {
 
     public ATMOfBank(int nrOfATM_, BankInstitution bank_Institution_){
         this.nrOfATM = nrOfATM_;
-        this.nameOfBank = bank_Institution_.nameOfBank;
+        this.nameOfBank = bank_Institution_.getNameOfBank();
     }
 
     public String getNameOfBank() {

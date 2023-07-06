@@ -9,7 +9,7 @@ public class BranchOfBank {
 
     public BranchOfBank(String nameOfBranch_, BankInstitution bank_Institution_){
         this.nameOfBranch = nameOfBranch_;
-        this.nameOfBank = bank_Institution_.nameOfBank;
+        this.nameOfBank = bank_Institution_.getNameOfBank();
     }
 
     public String getNameOfBank() {

@@ -21,8 +21,8 @@ public class Controller {
         }
 
         System.out.println("Namen unserer Banken: ");
-        System.out.println(Database.get(0).nameOfBank);
-        System.out.println(Database.get(1).nameOfBank);
+        System.out.println(Database.get(0).getNameOfBank());
+        System.out.println(Database.get(1).getNameOfBank());
 
 
         BranchOfBank filialeAmPlatz = new BranchOfBank("Platzfiliale", Sparkasse);
