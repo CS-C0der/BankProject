@@ -2,18 +2,19 @@ package lib;
 
 public class CurrentAccount {
 
-    private int idOfCurrentAccount;
+    private String iBANOfCurrentAccount;
 
-    public CurrentAccount(int idOfCurrentAccount_, int idOfBankCustomer_) {
-
+    public CurrentAccount(String iBANOfCurrentAccount_) {
+    	this.iBANOfCurrentAccount = iBANOfCurrentAccount_;
+    	
     }
 
-    public int getIdOfCurrentAccount() {
-        return idOfCurrentAccount;
+    public String getIBANOfCurrentAccount() {
+        return iBANOfCurrentAccount;
     }
 
-    public void setIdOfCurrentAccount(int idOfCurrentAccount) {
-        this.idOfCurrentAccount = idOfCurrentAccount;
+    public void setIBANOfCurrentAccount(String iBANOfCurrentAccount_) {
+        this.iBANOfCurrentAccount = iBANOfCurrentAccount_;
     }
 
 }
