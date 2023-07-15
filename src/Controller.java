@@ -11,8 +11,8 @@ public class Controller {
 
         String incomingString = "Volksbank";
 
-        BankInstitution Sparkasse = new BankInstitution("Sparkasse");
-        Database.add(Sparkasse);
+        BankInstitution sparkasse = new BankInstitution("Sparkasse");
+        Database.add(sparkasse);
 
         if (Utility.checkIfNotUsed(incomingString, Database)) {
             BankInstitution volksbank = new BankInstitution(incomingString);
@@ -24,13 +24,13 @@ public class Controller {
         System.out.println(Database.get(1).getNameOfBank());
 
 
-        BranchOfBank filialeAmPlatz = new BranchOfBank("Platzfiliale", Sparkasse);
+        BranchOfBank filialeAmPlatz = new BranchOfBank("Platzfiliale", sparkasse);
 
         System.out.println("Name unserer Filiale: ");
         System.out.println(filialeAmPlatz.getNameOfBranch());
         System.out.println(filialeAmPlatz.getNameOfBank());
 
-        ATMOfBank atmAmPlatz = new ATMOfBank(1, Sparkasse);
+        ATMOfBank atmAmPlatz = new ATMOfBank(1, sparkasse);
 
         System.out.println("Nummer unseres Bankautomaten: ");
         System.out.println(atmAmPlatz.getNrOfATM());
@@ -43,12 +43,12 @@ public class Controller {
         BankCustomer newCustomer = new BankCustomer(eingabeName);
         newCustomer.createNewAccount(eingabeIBAN);
         
-        Sparkasse.treeMapOfAllCurrentAccount.put(newCustomer.getCurrentAccount().getIBANOfCurrentAccount(), newCustomer.getNameOfBankCustomer());
+        sparkasse.treeMapOfAllCurrentAccount.put(newCustomer.getCurrentAccount().getIBANOfCurrentAccount(), newCustomer.getNameOfBankCustomer());
         
-        System.out.println(Sparkasse.treeMapOfAllCurrentAccount.get(newCustomer.getCurrentAccount().getIBANOfCurrentAccount()));
+        System.out.println(sparkasse.treeMapOfAllCurrentAccount.get(newCustomer.getCurrentAccount().getIBANOfCurrentAccount()));
                 
         BiConsumer<String, String> outputOfAllCurrentAccounts = (key, value) -> System.out.println(key + " - " + value);
-        Sparkasse.treeMapOfAllCurrentAccount.forEach(outputOfAllCurrentAccounts);
+        sparkasse.treeMapOfAllCurrentAccount.forEach(outputOfAllCurrentAccounts);
         
         
 
