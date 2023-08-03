@@ -21,7 +21,7 @@ public class Controller {
         }
 
         try {
-            UserInput.INSTANCE.setUserInputName(javax.swing.JOptionPane.showInputDialog("Bitte geben Sie den Namen für ihren neuen Account ein."));
+            UserInput.INSTANCE.setUserInputName(javax.swing.JOptionPane.showInputDialog("Bitte geben Sie den  Namen für ihren neuen Account ein."));
         }
         catch (IOException | NullPointerException e ) {
             System.err.println(e.getMessage());

@@ -6,7 +6,6 @@ public class CurrentAccount {
 
     public CurrentAccount(String iBANOfCurrentAccount_) {
     	this.iBANOfCurrentAccount = iBANOfCurrentAccount_;
-    	
     }
 
     public String getIBANOfCurrentAccount() {

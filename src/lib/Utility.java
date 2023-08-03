@@ -4,16 +4,7 @@ import java.util.ArrayList;
 
 public class Utility {
 
-    private Utility() {
-
-    };
-
-    static public boolean checkIfNotUsed (String first, String second) {
-        if (first == second) {
-            return false;
-        }
-        return true;
-    }
+    private Utility() {};
 
     static public boolean checkIfNotUsed (String first, ArrayList<BankInstitution> bank_Institution_) {
 

@@ -8,7 +8,6 @@ public class BankCustomer {
 
     public BankCustomer(String nameOfBankCustomer_) {
     	this.nameOfBankCustomer = nameOfBankCustomer_;
-
     }
 
     public void createNewAccount(String iBAN_) {

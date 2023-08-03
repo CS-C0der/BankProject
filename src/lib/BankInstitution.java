@@ -15,8 +15,6 @@ public class BankInstitution {
 
     public LinkedList<BankCustomer> listOfAllBankCustomer;
 
-    public BankInstitution(){};
-
     public BankInstitution(String nameOfBank_) {
         this.nameOfBank = nameOfBank_;
     }
