@@ -1,6 +1,7 @@
 import lib.*;
 
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.function.BiConsumer;
 
@@ -21,11 +22,14 @@ public class Controller {
         }
 
         try {
-            UserInput.INSTANCE.setUserInputName(javax.swing.JOptionPane.showInputDialog("Bitte geben Sie den  Namen für ihren neuen Account ein."));
+            UserInput.INSTANCE.setUserInputName(javax.swing.JOptionPane.showInputDialog("Bitte geben Sie den Namen des neuen Kunden ein."));
         }
         catch (IOException | NullPointerException e ) {
             System.err.println(e.getMessage());
         }
+
+        BankCustomer newCustomer = new BankCustomer(UserInput.INSTANCE.getUserInputName());
+        System.out.println("Neuer Kunde " + newCustomer.getNameOfBankCustomer() + " erfolgreich eingetragen.");
 
         try {
             UserInput.INSTANCE.setUserInputIBAN(javax.swing.JOptionPane.showInputDialog("Bitte geben Sie die IBAN für ihren neuen Account ein."));
@@ -34,13 +38,11 @@ public class Controller {
             System.err.println(e.getMessage());
         }
 
-        BankCustomer newCustomer = new BankCustomer(UserInput.INSTANCE.getUserInputName());
         newCustomer.createNewAccount(UserInput.INSTANCE.getUserInputIBAN());
+        sparkasse.treeMapOfAllCurrentAccount.put(UserInput.INSTANCE.getUserInputIBAN(), newCustomer.getNameOfBankCustomer());
+        System.out.println("Neuer Account für IBAN " + newCustomer.getCurrentAccount().getIBANOfCurrentAccount() + " erfolgreich angelegt.");
 
-        sparkasse.treeMapOfAllCurrentAccount.put(newCustomer.getCurrentAccount().getIBANOfCurrentAccount(), newCustomer.getNameOfBankCustomer());
-
-        System.out.println(sparkasse.treeMapOfAllCurrentAccount.get(newCustomer.getCurrentAccount().getIBANOfCurrentAccount())); //Output: name of new Account
-
+        System.out.println("Liste aller bestehenden Accounts mit zugehörigen Kunden: ");
         BiConsumer<String, String> outputOfAllCurrentAccounts = (key, value) -> System.out.println(key + " - " + value);
         sparkasse.treeMapOfAllCurrentAccount.forEach(outputOfAllCurrentAccounts);
 

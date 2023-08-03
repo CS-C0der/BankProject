@@ -3,7 +3,6 @@ package lib;
 public class BankCustomer {
 
     private String nameOfBankCustomer;
-    private String iBANOfBankCustomer;
     private CurrentAccount currentAccount;
 
     public BankCustomer(String nameOfBankCustomer_) {
@@ -20,14 +19,6 @@ public class BankCustomer {
 
     public void setNameOfBankCustomer(String nameOfBankCustomer_) {
         this.nameOfBankCustomer = nameOfBankCustomer_;
-    }
-
-    public String getIBANOfBankCustomer() {
-        return iBANOfBankCustomer;
-    }
-
-    public void setIBANOfBankCustomer(String iBANOfBankCustomer) {
-        this.iBANOfBankCustomer = iBANOfBankCustomer;
     }
 
     public CurrentAccount getCurrentAccount() {
