@@ -54,7 +54,7 @@ public class Database {
 
     }
 
-    public void deposit(String customerName_, int amount_) {
+    public void deposit(String customerName_, int amount_) throws IllegalAccessError {
 
         if (treeMapOfAllCurrentAccount.containsValue(customerName_)) {
             for (BankCustomer customerForDeposit : listOfAllBankCustomer) {
@@ -64,6 +64,7 @@ public class Database {
                 }
             }
         }
+        else throw new IllegalAccessError ("Zugriff nicht möglich. Geben Sie einen existierenden Kunden ein.");
     }
 
 }
