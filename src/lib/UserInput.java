@@ -6,17 +6,36 @@ public enum UserInput {
 
     INSTANCE;
 
-    private String userInputName;
+    private String userInputBank;
+    private String userInputCustomer;
+    private String userInputAccount;
     private String userInputIBAN;
 
-    public String getUserInputName() {
-        return userInputName;
+    public String getUserInputBank() {
+        return userInputBank;
     }
 
-    public void setUserInputName(String userInputName) throws IOException, NullPointerException  {
-        this.userInputName = userInputName;
+    public void setUserInputBank(String userInputBank) throws IOException, NullPointerException  {
+
+       // try {
+            if (userInputBank.isBlank()) {
+                throw new IOException("Eingabe ungültig.");
+            }
+            this.userInputBank = userInputBank;
+        /*}
+        catch (NullPointerException e){
+            throw new NullPointerException("Sie haben nichts eingegeben.");
+        }*/
+    }
+
+    public String getUserInputCustomer() {
+        return userInputCustomer;
+    }
+
+    public void setUserInputCustomer(String userInputCustomer) throws IOException, NullPointerException  {
+        this.userInputCustomer = userInputCustomer;
         try {
-            if (this.userInputName.isBlank() == true) {
+            if (this.userInputCustomer.isBlank() == true) {
                 throw new IOException("Eingabe ungültig.");
             }
         }
@@ -26,11 +45,19 @@ public enum UserInput {
 
     }
 
+    public String getUserInputAccount() {
+        return userInputAccount;
+    }
+
+    public void setUserInputAccount(String userInputAccount) {
+        this.userInputAccount = userInputAccount;
+    }
+
     public String getUserInputIBAN() {
         return userInputIBAN;
     }
 
-    public void setUserInputIBAN(String userInputIBAN) throws IllegalArgumentException {
+    public void setUserInputIBAN(String userInputIBAN) throws IllegalArgumentException, NullPointerException {
         this.userInputIBAN = userInputIBAN;
         String fehlertext =
                 "Allgemeine Regeln:\n" +
@@ -51,6 +78,9 @@ public enum UserInput {
         }
         catch (NumberFormatException e){
             throw new IllegalArgumentException("Aktueller Fehler: Ab Stelle 3 dürfen nur Zahlen folgen.\n" + fehlertext);
+        }
+        catch (NullPointerException e){
+            throw new NullPointerException("Sie haben nichts eingegeben.");
         }
 
     }

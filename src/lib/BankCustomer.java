@@ -9,10 +9,6 @@ public class BankCustomer {
     	this.nameOfBankCustomer = nameOfBankCustomer_;
     }
 
-    public void createNewAccount(String iBAN_) {
-        this.currentAccount = new CurrentAccount(iBAN_);
-    }
-
     public String getNameOfBankCustomer() {
         return nameOfBankCustomer;
     }
