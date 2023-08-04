@@ -3,6 +3,7 @@ package lib;
 import java.util.LinkedList;
 import java.util.ListIterator;
 import java.util.TreeMap;
+import java.util.function.BiConsumer;
 
 public class Database {
 
@@ -67,6 +68,19 @@ public class Database {
             }
         }
         else throw new IllegalAccessError ("Kontozugriff nicht möglich. Geben Sie einen existierenden Kunden ein.");
+    }
+
+    public void showAll() throws NullPointerException {
+
+        try {
+            System.out.println("Liste aller Kunden mit zugehörigen Accounts: ");
+            BiConsumer<String, String> outputOfAllCurrentAccounts = (key, value) -> System.out.println(key + " - " + value);
+            treeMapOfAllCurrentAccount.forEach(outputOfAllCurrentAccounts);
+        }
+        catch (NullPointerException e) {
+            throw new NullPointerException("Datenzugriff nicht möglich. Haben Sie alles Nötige angelegt?");
+        }
+
     }
 
 }

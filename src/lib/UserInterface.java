@@ -1,6 +1,7 @@
 package lib;
 
 import java.io.IOException;
+import java.util.function.BiConsumer;
 
 public enum UserInterface {
 
@@ -14,15 +15,14 @@ public enum UserInterface {
 
     public void run(Database database) throws Exception {
 
+
         try {
             setUserInputBank(javax.swing.JOptionPane.showInputDialog("Bitte geben Sie den Namen der neuen Bankinstitution ein."));
             database.addBank(getUserInputBank());
         }
         catch (IOException | NullPointerException e ) {
             System.err.println(e.getMessage());
-
         }
-
 
         try {
             setUserInputCustomer(javax.swing.JOptionPane.showInputDialog("Bitte geben Sie den Namen des neuen Kunden ein."));
@@ -33,30 +33,29 @@ public enum UserInterface {
         }
 
         try {
-            UserInterface.INSTANCE.setUserInputAccount(javax.swing.JOptionPane.showInputDialog("Für welchen Kunden wollen Sie einen Account anlegen?"));
-            database.addAccount(UserInterface.INSTANCE.getUserInputAccount());
+            setUserInputAccount(javax.swing.JOptionPane.showInputDialog("Für welchen Kunden wollen Sie einen Account anlegen?"));
+            database.addAccount(getUserInputAccount());
         }
         catch (IOException | IllegalAccessError | NullPointerException e) {
             System.err.println(e.getMessage());
         }
 
         try {
-            UserInterface.INSTANCE.setUserInputDepositAccount(javax.swing.JOptionPane.showInputDialog("Welcher Kunde möchte einzahlen?"));
-            UserInterface.INSTANCE.setUserInputDepositAmount(javax.swing.JOptionPane.showInputDialog("Wie viel Geld wollen Sie aufs Konto einzahlen?"));
-            database.deposit(UserInterface.INSTANCE.getUserInputDepositAccount(), UserInterface.INSTANCE.getUserInputDepositAmount());
+            setUserInputDepositAccount(javax.swing.JOptionPane.showInputDialog("Welcher Kunde möchte einzahlen?"));
+            setUserInputDepositAmount(javax.swing.JOptionPane.showInputDialog("Wie viel Geld wollen Sie aufs Konto einzahlen?"));
+            database.deposit(getUserInputDepositAccount(), getUserInputDepositAmount());
         }
         catch (IllegalArgumentException | IllegalAccessError | NullPointerException e) {
             System.err.println(e.getMessage());
         }
 
+        try {
+            database.showAll();
+        }
+        catch (NullPointerException e) {
+            System.err.println(e.getMessage());
+        }
 
-
-
-/*
-        System.out.println("Liste aller bestehenden Accounts mit zugehörigen Kunden: ");
-        BiConsumer<String, String> outputOfAllCurrentAccounts = (key, value) -> System.out.println(key + " - " + value);
-        database.treeMapOfAllCurrentAccount.forEach(outputOfAllCurrentAccounts);
-*/
     }
 
     public String getUserInputBank() {
