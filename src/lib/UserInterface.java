@@ -17,15 +17,15 @@ public enum UserInterface {
 
     public void setUserInputBank(String userInputBank) throws IOException, NullPointerException  {
 
-       // try {
+       try {
             if (userInputBank.isBlank()) {
                 throw new IOException("Eingabe ungültig.");
             }
             else this.userInputBank = userInputBank;
-        /*}
+        }
         catch (NullPointerException e){
             throw new NullPointerException("Sie haben nichts eingegeben.");
-        }*/
+        }
     }
 
     public String getUserInputCustomer() {
@@ -50,8 +50,17 @@ public enum UserInterface {
         return userInputAccount;
     }
 
-    public void setUserInputAccount(String userInputAccount) {
-        this.userInputAccount = userInputAccount;
+    public void setUserInputAccount(String userInputAccount)  throws IOException, NullPointerException  {
+
+        try {
+            if (userInputAccount.isBlank()) {
+                throw new IOException("Eingabe ungültig.");
+            }
+            else this.userInputAccount = userInputAccount;
+        }
+        catch (NullPointerException e){
+            throw new NullPointerException("Sie haben nichts eingegeben.");
+        }
     }
 
     public String getUserInputIBAN() {

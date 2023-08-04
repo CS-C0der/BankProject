@@ -14,6 +14,7 @@ public class Controller {
         }
         catch (IOException | NullPointerException e ) {
             System.err.println(e.getMessage());
+
         }
 
 
@@ -29,7 +30,7 @@ public class Controller {
             UserInterface.INSTANCE.setUserInputAccount(javax.swing.JOptionPane.showInputDialog("Für welchen Kunden wollen Sie einen Account anlegen?"));
             database.addAccount(UserInterface.INSTANCE.getUserInputAccount());
         }
-        catch (IllegalArgumentException | NullPointerException e) {
+        catch (IOException | NullPointerException e) {
             System.err.println(e.getMessage());
         }
 /*
