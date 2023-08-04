@@ -45,7 +45,7 @@ public class Database {
                     CurrentAccount newAccount = new CurrentAccount(Utility.getRandomIBAN());
                     customerForAccount.setCurrentAccount(newAccount);
                     this.treeMapOfAllCurrentAccount.put(newAccount.getIBANOfCurrentAccount(), customerForAccount.getNameOfBankCustomer());
-                    System.out.println("Neuer Account für Kunde " + customerForAccount.getNameOfBankCustomer() + " mit IBAN " + newAccount.getIBANOfCurrentAccount() + " erfolgreich angelegt.");
+                    System.out.println("Neues Konto für Kunde " + customerForAccount.getNameOfBankCustomer() + " mit IBAN " + newAccount.getIBANOfCurrentAccount() + " erfolgreich angelegt.");
 
                 }
             }
@@ -64,7 +64,7 @@ public class Database {
                 }
             }
         }
-        else throw new IllegalAccessError ("Zugriff nicht möglich. Geben Sie einen existierenden Kunden ein.");
+        else throw new IllegalAccessError ("Kontozugriff nicht möglich. Geben Sie einen existierenden Kunden ein.");
     }
 
 }

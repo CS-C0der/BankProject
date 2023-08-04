@@ -72,7 +72,7 @@ public enum UserInterface {
             else this.userInputBank = userInputBank;
         }
         catch (NullPointerException e){
-            throw new NullPointerException("Sie haben nichts eingegeben.");
+            throw new NullPointerException("Zugriff nicht möglich. Haben Sie alles Nötige angelegt?");
         }
     }
 
@@ -89,7 +89,7 @@ public enum UserInterface {
             else this.userInputCustomer = userInputCustomer;
         }
         catch (NullPointerException e){
-            throw new NullPointerException("Sie haben nichts eingegeben.");
+            throw new NullPointerException("Zugriff nicht möglich. Haben Sie alles Nötige angelegt?");
         }
 
     }
@@ -107,7 +107,7 @@ public enum UserInterface {
             else this.userInputAccount = userInputAccount;
         }
         catch (NullPointerException e){
-            throw new NullPointerException("Sie haben nichts eingegeben.");
+            throw new NullPointerException("Zugriff nicht möglich. Haben Sie alles Nötige angelegt?");
         }
     }
 
@@ -127,7 +127,7 @@ public enum UserInterface {
             throw new NumberFormatException("Sie dürfen nur ganze Zahlen eingeben.");
         }
         catch (NullPointerException e){
-            throw new NullPointerException("Sie haben nichts eingegeben.");
+            throw new NullPointerException("Zugriff nicht möglich. Haben Sie alles Nötige angelegt?");
         }
         if (this.userInputDepositAmount <= 0) {
             throw new NumberFormatException("Sie dürfen nur positive Zahlen eingeben.");
