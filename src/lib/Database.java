@@ -40,17 +40,19 @@ public class Database {
     public void addAccount(String customerName_) throws IllegalAccessError {
 
         if (!treeMapOfAllCurrentAccount.containsValue(customerName_)) {
+            boolean customerExists = false;
             for (BankCustomer customerForAccount : listOfAllBankCustomer) {
                 if (customerForAccount.getNameOfBankCustomer().equals(customerName_)) {
                     CurrentAccount newAccount = new CurrentAccount(Utility.getRandomIBAN());
                     customerForAccount.setCurrentAccount(newAccount);
                     this.treeMapOfAllCurrentAccount.put(newAccount.getIBANOfCurrentAccount(), customerForAccount.getNameOfBankCustomer());
                     System.out.println("Neues Konto für Kunde " + customerForAccount.getNameOfBankCustomer() + " mit IBAN " + newAccount.getIBANOfCurrentAccount() + " erfolgreich angelegt.");
-
+                    customerExists = true;
                 }
             }
+            if (!customerExists) throw new IllegalAccessError ("Dieser Kunde ist noch nicht eingetragen.");
         }
-        else throw new IllegalAccessError ("Kunde hat bereits ein Konto.");
+        else throw new IllegalAccessError ("Dieser Kunde besitzt bereits ein Konto. Jeder Kunde kann nur ein Konto besitzen.");
 
     }
 
