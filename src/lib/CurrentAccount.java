@@ -3,6 +3,7 @@ package lib;
 public class CurrentAccount {
 
     private String iBANOfCurrentAccount;
+    private int balance;
 
     public CurrentAccount(String iBANOfCurrentAccount_) {
     	this.iBANOfCurrentAccount = iBANOfCurrentAccount_;
@@ -16,4 +17,11 @@ public class CurrentAccount {
         this.iBANOfCurrentAccount = iBANOfCurrentAccount_;
     }
 
+    public int getBalance() {
+        return balance;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
 }

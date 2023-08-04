@@ -33,16 +33,18 @@ public class Controller {
         catch (IOException | NullPointerException e) {
             System.err.println(e.getMessage());
         }
-/*
+
         try {
-            UserInput.INSTANCE.setUserInputIBAN(javax.swing.JOptionPane.showInputDialog("Für welchen Kunden wollen Sie einen Account anlegen?"));
-            database.addAccount(UserInput.INSTANCE.getUserInputIBAN());
+            UserInterface.INSTANCE.setUserInputDepositAccount(javax.swing.JOptionPane.showInputDialog("Welcher Kunde möchte einzahlen?"));
+            UserInterface.INSTANCE.setUserInputDepositAmount(javax.swing.JOptionPane.showInputDialog("Wie viel Geld wollen Sie aufs Konto einzahlen?"));
+            database.deposit(UserInterface.INSTANCE.getUserInputDepositAccount(), UserInterface.INSTANCE.getUserInputDepositAmount());
         }
         catch (IllegalArgumentException | NullPointerException e) {
             System.err.println(e.getMessage());
         }
 
- */
+
+ 
 
 /*
         System.out.println("Liste aller bestehenden Accounts mit zugehörigen Kunden: ");

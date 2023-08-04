@@ -9,7 +9,8 @@ public enum UserInterface {
     private String userInputBank;
     private String userInputCustomer;
     private String userInputAccount;
-    private String userInputIBAN;
+    private int userInputDepositAmount;
+    private String userInputDepositAccount;
 
     public String getUserInputBank() {
         return userInputBank;
@@ -63,35 +64,36 @@ public enum UserInterface {
         }
     }
 
-    public String getUserInputIBAN() {
-        return userInputIBAN;
+    public int getUserInputDepositAmount() {
+        return userInputDepositAmount;
     }
 
-    public void setUserInputIBAN(String userInputIBAN) throws IllegalArgumentException, NullPointerException {
-        this.userInputIBAN = userInputIBAN;
-        String fehlertext =
-                "Allgemeine Regeln:\n" +
-                "Ihre IBAN muss mit DE starten.\n" +
-                "Ihre IBAN muss 22 Stellen aufweisen.\n" +
-                "Bitte geben Sie ab Stelle 3 nur Zahlen ein.\n";
-
-        if  (!userInputIBAN.substring(0,2).equals("DE")) {
-            throw new IllegalArgumentException("Aktueller Fehler: Ihre IBAN startet nicht mit 'DE'.\n" + fehlertext);
-        }
-
-        if (!(userInputIBAN.length() == 22)) {
-            throw new IllegalArgumentException("Aktueller Fehler: Ihre IBAN weist nicht 22 Stellen auf.\n" + fehlertext);
-        }
+    public void setUserInputDepositAmount(String userInputDepositAmount) throws IOException, NumberFormatException, NullPointerException {
 
         try {
-            Integer.parseInt(userInputIBAN.substring(2));
+            if (userInputDepositAmount.isBlank()) {
+                throw new IOException("Eingabe ungültig.");
+            }
+            else this.userInputDepositAmount = Integer.parseInt(userInputDepositAmount);
         }
         catch (NumberFormatException e){
-            throw new IllegalArgumentException("Aktueller Fehler: Ab Stelle 3 dürfen nur Zahlen folgen.\n" + fehlertext);
+            throw new NumberFormatException("Sie dürfen nur ganze Zahlen eingeben.");
         }
         catch (NullPointerException e){
             throw new NullPointerException("Sie haben nichts eingegeben.");
         }
-
+        if (this.userInputDepositAmount <= 0) {
+            throw new NumberFormatException("Sie dürfen nur positive Zahlen eingeben.");
+        }
     }
+
+    public String getUserInputDepositAccount() {
+        return userInputDepositAccount;
+    }
+
+    public void setUserInputDepositAccount(String userInputDepositAccount) {
+        this.userInputDepositAccount = userInputDepositAccount;
+    }
+
+
 }
