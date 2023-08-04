@@ -25,21 +25,19 @@ public class Database {
     public boolean addCustomer(String customerName_) {
 
         if (true) {
-            BankCustomer newCustomer = new BankCustomer(UserInput.INSTANCE.getUserInputCustomer());
+            BankCustomer newCustomer = new BankCustomer(customerName_);
             this.listOfAllBankCustomer.add(newCustomer);
             System.out.println("Neuer Kunde " + newCustomer.getNameOfBankCustomer() + " erfolgreich eingetragen.");
             return true;
         }
-        return false;
+        else return false;
     }
 
     public boolean addAccount(String customerName_) {
 
-        BankCustomer customerForAccount;
-        for (ListIterator<BankCustomer> iterator = listOfAllBankCustomer.listIterator();
-             iterator.hasNext();) {
-            customerForAccount = iterator.next();
-            if (customerForAccount.getNameOfBankCustomer() == customerName_) {
+
+        for (BankCustomer customerForAccount: listOfAllBankCustomer) {
+            if (customerForAccount.getNameOfBankCustomer().equals(customerName_)) {
                 CurrentAccount newAccount = new CurrentAccount(Utility.getRandomIBAN());
                 customerForAccount.setCurrentAccount(newAccount);
                 this.treeMapOfAllCurrentAccount.put(newAccount.getIBANOfCurrentAccount(), customerForAccount.getNameOfBankCustomer());

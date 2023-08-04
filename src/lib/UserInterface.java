@@ -2,7 +2,7 @@ package lib;
 
 import java.io.IOException;
 
-public enum UserInput {
+public enum UserInterface {
 
     INSTANCE;
 
@@ -21,7 +21,7 @@ public enum UserInput {
             if (userInputBank.isBlank()) {
                 throw new IOException("Eingabe ungültig.");
             }
-            this.userInputBank = userInputBank;
+            else this.userInputBank = userInputBank;
         /*}
         catch (NullPointerException e){
             throw new NullPointerException("Sie haben nichts eingegeben.");
@@ -33,11 +33,12 @@ public enum UserInput {
     }
 
     public void setUserInputCustomer(String userInputCustomer) throws IOException, NullPointerException  {
-        this.userInputCustomer = userInputCustomer;
+
         try {
-            if (this.userInputCustomer.isBlank() == true) {
+            if (userInputCustomer.isBlank()) {
                 throw new IOException("Eingabe ungültig.");
             }
+            else this.userInputCustomer = userInputCustomer;
         }
         catch (NullPointerException e){
             throw new NullPointerException("Sie haben nichts eingegeben.");

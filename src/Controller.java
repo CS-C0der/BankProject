@@ -1,9 +1,6 @@
 import lib.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.TreeMap;
-import java.util.function.BiConsumer;
 
 public class Controller {
 
@@ -12,8 +9,8 @@ public class Controller {
         Database database = new Database();
 
         try {
-            UserInput.INSTANCE.setUserInputBank(javax.swing.JOptionPane.showInputDialog("Bitte geben Sie den Namen der neuen Bankinstitution ein."));
-            database.addBank(UserInput.INSTANCE.getUserInputBank());
+            UserInterface.INSTANCE.setUserInputBank(javax.swing.JOptionPane.showInputDialog("Bitte geben Sie den Namen der neuen Bankinstitution ein."));
+            database.addBank(UserInterface.INSTANCE.getUserInputBank());
         }
         catch (IOException | NullPointerException e ) {
             System.err.println(e.getMessage());
@@ -21,16 +18,16 @@ public class Controller {
 
 
         try {
-            UserInput.INSTANCE.setUserInputCustomer(javax.swing.JOptionPane.showInputDialog("Bitte geben Sie den Namen des neuen Kunden ein."));
-            database.addCustomer(UserInput.INSTANCE.getUserInputCustomer());
+            UserInterface.INSTANCE.setUserInputCustomer(javax.swing.JOptionPane.showInputDialog("Bitte geben Sie den Namen des neuen Kunden ein."));
+            database.addCustomer(UserInterface.INSTANCE.getUserInputCustomer());
         }
         catch (IOException | NullPointerException e ) {
             System.err.println(e.getMessage());
         }
 
         try {
-            UserInput.INSTANCE.setUserInputAccount(javax.swing.JOptionPane.showInputDialog("Für welchen Kunden wollen Sie einen Account anlegen?"));
-            database.addAccount(UserInput.INSTANCE.getUserInputAccount());
+            UserInterface.INSTANCE.setUserInputAccount(javax.swing.JOptionPane.showInputDialog("Für welchen Kunden wollen Sie einen Account anlegen?"));
+            database.addAccount(UserInterface.INSTANCE.getUserInputAccount());
         }
         catch (IllegalArgumentException | NullPointerException e) {
             System.err.println(e.getMessage());
