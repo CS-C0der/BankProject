@@ -1,7 +1,11 @@
 package lib;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.util.function.BiConsumer;
+
+import static javax.swing.JOptionPane.showInputDialog;
+import static javax.swing.JOptionPane.showOptionDialog;
 
 public enum UserInterface {
 
@@ -12,50 +16,70 @@ public enum UserInterface {
     private String userInputAccount;
     private int userInputDepositAmount;
     private String userInputDepositAccount;
+    private int navigation;
+    private String[] options = {"Neue Bank", "Neuer Kunde", "Neuer Account", "Geld einzahlen", "Bestand anzeigen", "Beenden"};
 
-    public void run(Database database) throws Exception {
+    public boolean run(Database database) throws Exception {
 
+        navigation = showOptionDialog(null, "Wollen Sie das Programm beenden?", "Beenden", 0, JOptionPane.QUESTION_MESSAGE,
+                null, options, "Neue Bank");
 
-        try {
-            setUserInputBank(javax.swing.JOptionPane.showInputDialog("Bitte geben Sie den Namen der neuen Bankinstitution ein."));
-            database.addBank(getUserInputBank());
-        }
-        catch (IOException | NullPointerException e ) {
-            System.err.println(e.getMessage());
+        switch (navigation) {
+            case 0:
+
+                try {
+                    setUserInputBank(showInputDialog("Bitte geben Sie den Namen der neuen Bankinstitution ein."));
+                    database.addBank(getUserInputBank());
+                } catch (IOException | NullPointerException e) {
+                    System.err.println(e.getMessage());
+                }
+                break;
+
+            case 1:
+
+                try {
+                    setUserInputCustomer(showInputDialog("Bitte geben Sie den Namen des neuen Kunden ein."));
+                    database.addCustomer(getUserInputCustomer());
+                } catch (IOException | NullPointerException e) {
+                    System.err.println(e.getMessage());
+                }
+                break;
+
+            case 2:
+
+                try {
+                    setUserInputAccount(showInputDialog("Für welchen Kunden wollen Sie einen Account anlegen?"));
+                    database.addAccount(getUserInputAccount());
+                } catch (IOException | IllegalAccessError | NullPointerException e) {
+                    System.err.println(e.getMessage());
+                }
+                break;
+
+            case 3:
+
+                try {
+                    setUserInputDepositAccount(showInputDialog("Welcher Kunde möchte einzahlen?"));
+                    setUserInputDepositAmount(showInputDialog("Wie viel Geld wollen Sie aufs Konto einzahlen?"));
+                    database.deposit(getUserInputDepositAccount(), getUserInputDepositAmount());
+                } catch (IllegalArgumentException | IllegalAccessError | NullPointerException e) {
+                    System.err.println(e.getMessage());
+                }
+                break;
+
+            case 4:
+
+                try {
+                    database.showAll();
+                } catch (NullPointerException e) {
+                    System.err.println(e.getMessage());
+                }
+                break;
+
+            case 5:
+                return false;
         }
 
-        try {
-            setUserInputCustomer(javax.swing.JOptionPane.showInputDialog("Bitte geben Sie den Namen des neuen Kunden ein."));
-            database.addCustomer(getUserInputCustomer());
-        }
-        catch (IOException | NullPointerException e ) {
-            System.err.println(e.getMessage());
-        }
-
-        try {
-            setUserInputAccount(javax.swing.JOptionPane.showInputDialog("Für welchen Kunden wollen Sie einen Account anlegen?"));
-            database.addAccount(getUserInputAccount());
-        }
-        catch (IOException | IllegalAccessError | NullPointerException e) {
-            System.err.println(e.getMessage());
-        }
-
-        try {
-            setUserInputDepositAccount(javax.swing.JOptionPane.showInputDialog("Welcher Kunde möchte einzahlen?"));
-            setUserInputDepositAmount(javax.swing.JOptionPane.showInputDialog("Wie viel Geld wollen Sie aufs Konto einzahlen?"));
-            database.deposit(getUserInputDepositAccount(), getUserInputDepositAmount());
-        }
-        catch (IllegalArgumentException | IllegalAccessError | NullPointerException e) {
-            System.err.println(e.getMessage());
-        }
-
-        try {
-            database.showAll();
-        }
-        catch (NullPointerException e) {
-            System.err.println(e.getMessage());
-        }
-
+        return true;
     }
 
     public String getUserInputBank() {
