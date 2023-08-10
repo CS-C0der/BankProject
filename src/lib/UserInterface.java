@@ -21,7 +21,7 @@ public enum UserInterface {
 
     public boolean run(Database database) throws Exception {
 
-        navigation = showOptionDialog(null, "Wollen Sie das Programm beenden?", "Beenden", 0, JOptionPane.QUESTION_MESSAGE,
+        navigation = showOptionDialog(null, "Was möchten Sie tun?", "Beenden", 0, JOptionPane.QUESTION_MESSAGE,
                 null, options, "Neue Bank");
 
         switch (navigation) {
