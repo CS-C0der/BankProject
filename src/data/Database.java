@@ -1,7 +1,11 @@
-package lib;
+package data;
+
+import model.BankCustomer;
+import model.BankInstitution;
+import model.CurrentAccount;
+import util.Utility;
 
 import java.util.LinkedList;
-import java.util.ListIterator;
 import java.util.TreeMap;
 import java.util.function.BiConsumer;
 

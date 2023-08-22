@@ -1,4 +1,4 @@
-package lib;
+package model;
 
 public class CurrentAccount {
 

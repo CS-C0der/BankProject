@@ -1,4 +1,6 @@
-package lib;
+package util;
+
+import model.BankInstitution;
 
 import java.util.LinkedList;
 

@@ -1,6 +1,7 @@
-import lib.*;
+package controller;
 
-import java.io.IOException;
+import data.Database;
+import view.UserInterface;
 
 public class Controller {
 

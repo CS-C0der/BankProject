@@ -1,8 +1,9 @@
-package lib;
+package view;
+
+import data.Database;
 
 import javax.swing.*;
 import java.io.IOException;
-import java.util.function.BiConsumer;
 
 import static javax.swing.JOptionPane.showInputDialog;
 import static javax.swing.JOptionPane.showOptionDialog;
