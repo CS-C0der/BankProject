@@ -22,7 +22,7 @@ public enum UserInterface {
 
     public boolean run(Database database) throws Exception {
 
-        navigation = showOptionDialog(null, "Was möchten Sie tun?", "Beenden", 0, JOptionPane.QUESTION_MESSAGE,
+        navigation = showOptionDialog(null, "Was möchten Sie tun?", "Willkommen bei der Bank Ihres Vertrauens!", 0, JOptionPane.QUESTION_MESSAGE,
                 null, options, "Neue Bank");
 
         switch (navigation) {

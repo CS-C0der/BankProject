@@ -13,11 +13,12 @@ public class Database {
 
     private LinkedList<BankInstitution> listOfAllBankInstitution = new LinkedList<>();
 
-    private TreeMap<String, String> treeMapOfAllCurrentAccount = new TreeMap<String, String>();
+    private TreeMap<String, CurrentAccount> treeMapOfAllCurrentAccount = new TreeMap<String, CurrentAccount>();
 
     private LinkedList<BankCustomer> listOfAllBankCustomer = new LinkedList<>();
 
     public void addBank(String bankName_) throws IllegalArgumentException {
+
         if (Utility.checkIfNotUsed(bankName_, listOfAllBankInstitution)) {
             BankInstitution newBank = new BankInstitution(bankName_);
             this.listOfAllBankInstitution.add(newBank);
@@ -44,13 +45,13 @@ public class Database {
 
     public void addAccount(String customerName_) throws IllegalAccessError {
 
-        if (!treeMapOfAllCurrentAccount.containsValue(customerName_)) {
+        if (!treeMapOfAllCurrentAccount.containsKey(customerName_)) {
             boolean customerExists = false;
             for (BankCustomer customerForAccount : listOfAllBankCustomer) {
                 if (customerForAccount.getNameOfBankCustomer().equals(customerName_)) {
                     CurrentAccount newAccount = new CurrentAccount(Utility.getRandomIBAN());
                     customerForAccount.setCurrentAccount(newAccount);
-                    this.treeMapOfAllCurrentAccount.put(newAccount.getIBANOfCurrentAccount(), customerForAccount.getNameOfBankCustomer());
+                    this.treeMapOfAllCurrentAccount.put(customerForAccount.getNameOfBankCustomer(), newAccount);
                     System.out.println("Neues Konto für Kunde " + customerForAccount.getNameOfBankCustomer() + " mit IBAN " + newAccount.getIBANOfCurrentAccount() + " erfolgreich angelegt.");
                     customerExists = true;
                 }
@@ -63,7 +64,7 @@ public class Database {
 
     public void deposit(String customerName_, int amount_) throws IllegalAccessError {
 
-        if (treeMapOfAllCurrentAccount.containsValue(customerName_)) {
+        if (treeMapOfAllCurrentAccount.containsKey(customerName_)) {
             for (BankCustomer customerForDeposit : listOfAllBankCustomer) {
                 if (customerForDeposit.getNameOfBankCustomer().equals(customerName_)) {
                     customerForDeposit.getCurrentAccount().setBalance(amount_);
@@ -78,8 +79,9 @@ public class Database {
 
         try {
             System.out.println("Liste aller Kunden mit zugehörigen Accounts: ");
-            BiConsumer<String, String> outputOfAllCurrentAccounts = (key, value) -> System.out.println(key + " - " + value);
+            BiConsumer<String, CurrentAccount> outputOfAllCurrentAccounts = (key, value) -> System.out.println(key + " - " + value.getIBANOfCurrentAccount() + value.getBalance());
             treeMapOfAllCurrentAccount.forEach(outputOfAllCurrentAccounts);
+
         }
         catch (NullPointerException e) {
             throw new NullPointerException("Datenzugriff nicht möglich. Haben Sie alles Nötige angelegt?");
