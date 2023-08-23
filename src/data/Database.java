@@ -67,8 +67,8 @@ public class Database {
         if (treeMapOfAllCurrentAccount.containsKey(customerName_)) {
             for (BankCustomer customerForDeposit : listOfAllBankCustomer) {
                 if (customerForDeposit.getNameOfBankCustomer().equals(customerName_)) {
-                    customerForDeposit.getCurrentAccount().setBalance(amount_);
-                    System.out.println("Einzahlung über " + amount_ + "€ von Kunde " + customerForDeposit.getNameOfBankCustomer() + " auf Konto mit IBAN " + customerForDeposit.getCurrentAccount().getIBANOfCurrentAccount() + " erfolgreich getätigt.");
+                    customerForDeposit.getCurrentAccount().setBalance(customerForDeposit.getCurrentAccount().getBalance() + amount_);
+                    System.out.println("Einzahlung über " + amount_ + "€ von Kunde " + customerForDeposit.getNameOfBankCustomer() + " auf Konto " + customerForDeposit.getCurrentAccount().getIBANOfCurrentAccount() + " erfolgreich getätigt.");
                 }
             }
         }
@@ -78,8 +78,8 @@ public class Database {
     public void showAll() throws NullPointerException {
 
         try {
-            System.out.println("Liste aller Kunden mit zugehörigen Accounts: ");
-            BiConsumer<String, CurrentAccount> outputOfAllCurrentAccounts = (key, value) -> System.out.println(key + " - " + value.getIBANOfCurrentAccount() + value.getBalance());
+            System.out.println("Liste aller Kunden mit zugehörigen Kontoständen: ");
+            BiConsumer<String, CurrentAccount> outputOfAllCurrentAccounts = (key, value) -> System.out.println(key + " hat "  + value.getBalance() + "€" + " auf Konto " + value.getIBANOfCurrentAccount());
             treeMapOfAllCurrentAccount.forEach(outputOfAllCurrentAccounts);
 
         }
