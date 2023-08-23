@@ -11,20 +11,12 @@ import java.util.function.BiConsumer;
 
 public class Database {
 
-    private LinkedList<BankInstitution> listOfAllBankInstitution = new LinkedList<>();
-
     private TreeMap<String, CurrentAccount> treeMapOfAllCurrentAccount = new TreeMap<String, CurrentAccount>();
 
     private LinkedList<BankCustomer> listOfAllBankCustomer = new LinkedList<>();
 
-    public void addBank(String bankName_) throws IllegalArgumentException {
-
-        if (Utility.checkIfNotUsed(bankName_, listOfAllBankInstitution)) {
-            BankInstitution newBank = new BankInstitution(bankName_);
-            this.listOfAllBankInstitution.add(newBank);
-            System.out.println("Neue Bankinstitution " + newBank.getNameOfBank() + " erfolgreich angelegt.");
-        }
-        else throw new IllegalArgumentException("Bank existiert bereits.");
+    public void renameBank(String bankName_) throws IllegalArgumentException {
+        BankInstitution.INSTANCE.setNameOfBank(bankName_);
     }
 
     public void addCustomer(String customerName_) throws IllegalArgumentException {
@@ -78,7 +70,7 @@ public class Database {
     public void showAll() throws NullPointerException {
 
         try {
-            System.out.println("Liste aller Kunden mit zugehörigen Kontoständen: ");
+            System.out.println("Hier sehen Sie alle Kunden der " + BankInstitution.INSTANCE.getNameOfBank() + " mit ihren Kontoständen: ");
             BiConsumer<String, CurrentAccount> outputOfAllCurrentAccounts = (key, value) -> System.out.println(key + " hat "  + value.getBalance() + "€" + " auf Konto " + value.getIBANOfCurrentAccount());
             treeMapOfAllCurrentAccount.forEach(outputOfAllCurrentAccounts);
 

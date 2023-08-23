@@ -1,13 +1,11 @@
 package model;
 
 
-public class BankInstitution {
+public enum BankInstitution {
 
-    private String nameOfBank;
+    INSTANCE;
 
-    public BankInstitution(String nameOfBank_) {
-        this.nameOfBank = nameOfBank_;
-    }
+    private String nameOfBank = "Bank Ihres Vertrauens";
 
     public String getNameOfBank() {
         return nameOfBank;

@@ -1,6 +1,7 @@
 package view;
 
 import data.Database;
+import model.BankInstitution;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -18,19 +19,19 @@ public enum UserInterface {
     private int userInputDepositAmount;
     private String userInputDepositAccount;
     private int navigation;
-    private String[] options = {"Neue Bank", "Neuer Kunde", "Neuer Account", "Geld einzahlen", "Bestand anzeigen", "Beenden"};
+    private String[] options = {"Bank umbenennen", "Neuer Kunde", "Neuer Account", "Geld einzahlen", "Bestand anzeigen", "Beenden"};
 
     public boolean run(Database database) throws Exception {
 
-        navigation = showOptionDialog(null, "Was möchten Sie tun?", "Willkommen bei der Bank Ihres Vertrauens!", 0, JOptionPane.QUESTION_MESSAGE,
+        navigation = showOptionDialog(null, "Was möchten Sie tun?", "Willkommen bei der " + BankInstitution.INSTANCE.getNameOfBank(), 0, JOptionPane.QUESTION_MESSAGE,
                 null, options, "Neue Bank");
 
         switch (navigation) {
             case 0:
 
                 try {
-                    setUserInputBank(showInputDialog("Bitte geben Sie den Namen der neuen Bankinstitution ein."));
-                    database.addBank(getUserInputBank());
+                    setUserInputBank(showInputDialog("Welchen Namen soll Ihre Bank in Zukunft tragen?"));
+                    database.renameBank(getUserInputBank());
                 } catch (IOException | NullPointerException e) {
                     System.err.println(e.getMessage());
                 }
@@ -49,7 +50,7 @@ public enum UserInterface {
             case 2:
 
                 try {
-                    setUserInputAccount(showInputDialog("Für welchen Kunden wollen Sie einen Account anlegen?"));
+                    setUserInputAccount(showInputDialog("Für welchen Kunden möchten Sie einen Account anlegen?"));
                     database.addAccount(getUserInputAccount());
                 } catch (IOException | IllegalAccessError | NullPointerException e) {
                     System.err.println(e.getMessage());
@@ -60,7 +61,7 @@ public enum UserInterface {
 
                 try {
                     setUserInputDepositAccount(showInputDialog("Welcher Kunde möchte einzahlen?"));
-                    setUserInputDepositAmount(showInputDialog("Wie viel Geld wollen Sie aufs Konto einzahlen?"));
+                    setUserInputDepositAmount(showInputDialog("Wie viel Geld möchten Sie einzahlen?"));
                     database.deposit(getUserInputDepositAccount(), getUserInputDepositAmount());
                 } catch (IOException | IllegalArgumentException | IllegalAccessError | NullPointerException e) {
                     System.err.println(e.getMessage());
@@ -77,6 +78,7 @@ public enum UserInterface {
                 break;
 
             case 5:
+                System.out.println("Vielen Dank für Ihren Besuch. Beehren Sie uns bald wieder.");
                 return false;
         }
 
