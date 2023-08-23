@@ -62,7 +62,7 @@ public enum UserInterface {
                     setUserInputDepositAccount(showInputDialog("Welcher Kunde möchte einzahlen?"));
                     setUserInputDepositAmount(showInputDialog("Wie viel Geld wollen Sie aufs Konto einzahlen?"));
                     database.deposit(getUserInputDepositAccount(), getUserInputDepositAmount());
-                } catch (IllegalArgumentException | IllegalAccessError | NullPointerException e) {
+                } catch (IOException | IllegalArgumentException | IllegalAccessError | NullPointerException e) {
                     System.err.println(e.getMessage());
                 }
                 break;
@@ -162,8 +162,17 @@ public enum UserInterface {
         return userInputDepositAccount;
     }
 
-    public void setUserInputDepositAccount(String userInputDepositAccount) {
-        this.userInputDepositAccount = userInputDepositAccount;
+    public void setUserInputDepositAccount(String userInputDepositAccount)  throws IOException, NullPointerException {
+        try {
+            if (userInputAccount.isBlank()) {
+                throw new IOException("Eingabe ungültig.");
+            }
+            else this.userInputDepositAccount = userInputDepositAccount;
+        }
+        catch (NullPointerException e){
+            throw new NullPointerException("Zugriff nicht möglich. Haben Sie alles Nötige angelegt?");
+        }
+
     }
 
 
