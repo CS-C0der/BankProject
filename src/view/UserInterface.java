@@ -31,7 +31,7 @@ public enum UserInterface {
 
                 try {
                     setUserInputBank(showInputDialog("Welchen Namen soll Ihre Bank in Zukunft tragen?"));
-                    database.renameBank(getUserInputBank());
+                    BankInstitution.INSTANCE.setNameOfBank(getUserInputBank());
                 } catch (IOException | NullPointerException e) {
                     System.err.println(e.getMessage());
                 }
@@ -93,7 +93,7 @@ public enum UserInterface {
 
        try {
             if (userInputBank.isBlank()) {
-                throw new IOException("Eingabe ungültig.");
+                throw new IOException("Ihre Eingabe muss etwas enthalten.");
             }
             else this.userInputBank = userInputBank;
         }
@@ -110,7 +110,7 @@ public enum UserInterface {
 
         try {
             if (userInputCustomer.isBlank()) {
-                throw new IOException("Eingabe ungültig.");
+                throw new IOException("Ihre Eingabe muss etwas enthalten.");
             }
             else this.userInputCustomer = userInputCustomer;
         }
@@ -128,7 +128,7 @@ public enum UserInterface {
 
         try {
             if (userInputAccount.isBlank()) {
-                throw new IOException("Eingabe ungültig.");
+                throw new IOException("Ihre Eingabe muss etwas enthalten.");
             }
             else this.userInputAccount = userInputAccount;
         }
@@ -145,7 +145,7 @@ public enum UserInterface {
 
         try {
             if (userInputDepositAmount.isBlank()) {
-                throw new IOException("Eingabe ungültig.");
+                throw new IOException("Ihre Eingabe muss etwas enthalten.");
             }
             else this.userInputDepositAmount = Integer.parseInt(userInputDepositAmount);
         }
@@ -167,7 +167,7 @@ public enum UserInterface {
     public void setUserInputDepositAccount(String userInputDepositAccount)  throws IOException, NullPointerException {
         try {
             if (userInputAccount.isBlank()) {
-                throw new IOException("Eingabe ungültig.");
+                throw new IOException("Ihre Eingabe muss etwas enthalten.");
             }
             else this.userInputDepositAccount = userInputDepositAccount;
         }

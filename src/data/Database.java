@@ -15,10 +15,6 @@ public class Database {
 
     private LinkedList<BankCustomer> listOfAllBankCustomer = new LinkedList<>();
 
-    public void renameBank(String bankName_) throws IllegalArgumentException {
-        BankInstitution.INSTANCE.setNameOfBank(bankName_);
-    }
-
     public void addCustomer(String customerName_) throws IllegalArgumentException {
 
         boolean alreadyUsed = false;
