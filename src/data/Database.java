@@ -15,6 +15,12 @@ public class Database {
 
     private LinkedList<BankCustomer> listOfAllBankCustomer = new LinkedList<>();
 
+    /**
+     * Adds a new customer to the list while checking that the name is not used yet
+     *
+     * @param customerName_ - passes the name of the customer entered by the user
+     * @exception IllegalArgumentException - reports to the user that this customer exists already
+     */
     public void addCustomer(String customerName_) throws IllegalArgumentException {
 
         boolean alreadyUsed = false;
@@ -31,6 +37,12 @@ public class Database {
         else throw new IllegalArgumentException ("Kunde existiert bereits.");
     }
 
+    /**
+     * Adds a new account to the Treemap using the name of the customer as key and the class CurrentAccount as value
+     *
+     * @param customerName_ - passes the name of the customer entered by the user, for which an account should be created
+     * @exception IllegalAccessError - reports to the user either that the referenced customer does not exist, or that he already owns an account
+     */
     public void addAccount(String customerName_) throws IllegalAccessError {
 
         if (!treeMapOfAllCurrentAccount.containsKey(customerName_)) {
@@ -74,7 +86,6 @@ public class Database {
         catch (NullPointerException e) {
             throw new NullPointerException("Datenzugriff nicht möglich. Haben Sie alles Nötige angelegt?");
         }
-
     }
 
 }

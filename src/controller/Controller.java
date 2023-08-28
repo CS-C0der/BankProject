@@ -5,7 +5,14 @@ import view.UserInterface;
 
 public class Controller {
 
-    // Initialises Database and runs UserInterface's "run" method until program is exited by passing the return value "false"
+    /**
+     * Launches the application.
+     * Initialises Database first.
+     * Runs UserInterface's "run" method until program is exited by passing the return value "false"
+     *
+     * @param args - Application startup arguments
+     * @throws Exception - passes exception handlings thrown in the run method
+     */
     public static void main(String[] args) throws Exception {
 
         boolean running = true;
@@ -14,6 +21,5 @@ public class Controller {
             running = UserInterface.INSTANCE.run(database);
         }
         while (running);
-
     }
 }

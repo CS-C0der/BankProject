@@ -5,8 +5,8 @@ public enum BankInstitution {
 
     INSTANCE;
 
-    // For personalisation and the fun of the user
-    // the bank's name (which is initialised here) can be changed in our program.
+    // For personalization and the fun of the user...
+    // ...the bank's name (which is initialised here) can be changed in our program.
     private String nameOfBank = "Bank Ihres Vertrauens";
 
     public String getNameOfBank() {
