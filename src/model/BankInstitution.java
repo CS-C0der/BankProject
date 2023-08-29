@@ -1,12 +1,16 @@
 package model;
 
-// Our Bank is an enum because it constitutes one overarching organisation.
+/**
+ * The Bank in this program is an enum because it constitutes one overarching organisation.
+ */
 public enum BankInstitution {
 
     INSTANCE;
 
-    // For personalization and the fun of the user...
-    // ...the bank's name (which is initialised here) can be changed in our program.
+    /**
+     * For personalization and the fun of the user...
+     * ...the bank's name (which is initialized here) can be changed in our program.
+     */
     private String nameOfBank = "Bank Ihres Vertrauens";
 
     public String getNameOfBank() {

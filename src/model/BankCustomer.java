@@ -3,10 +3,17 @@ package model;
 public class BankCustomer {
 
     private String nameOfBankCustomer;
-    // Every customer can have one account which must be created by the user first
+
+    /**
+     * Every customer can have one account which must be created by the user first
+     */
     private CurrentAccount currentAccount;
 
-    // Creates a new BankCustomer, which is only possible when passing a name
+    /**
+     * Creates a new BankCustomer, which is only possible when passing a name
+     *
+     * @param nameOfBankCustomer_ - Name of the customer
+     */
     public BankCustomer(String nameOfBankCustomer_) {
     	this.nameOfBankCustomer = nameOfBankCustomer_;
     }

@@ -1,12 +1,18 @@
 package model;
 
-// Every customer can create one current account that is referenced to by its IBAN and contains a balance.
+/**
+ * Every customer can create one current account that is referenced to by its IBAN and contains a balance.
+ */
 public class CurrentAccount {
 
     private String iBANOfCurrentAccount;
     private int balance;
 
-    // Creates the account by passing the IBAN which is assigned to the new account
+    /**
+     * Creates the account by passing the IBAN which is assigned to the new account
+     *
+     * @param iBANOfCurrentAccount_ - random generated IBAN that is stored here
+     */
     public CurrentAccount(String iBANOfCurrentAccount_) {
     	this.iBANOfCurrentAccount = iBANOfCurrentAccount_;
     }
