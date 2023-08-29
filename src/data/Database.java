@@ -19,7 +19,7 @@ public class Database {
      * Adds a new customer to the list while checking that the name is not used yet
      *
      * @param customerName_ - passes the name of the customer entered by the user
-     * @exception IllegalArgumentException - reports to the user that this customer exists already
+     * @throws IllegalArgumentException - reports to the user that this customer exists already
      */
     public void addCustomer(String customerName_) throws IllegalArgumentException {
 
@@ -41,7 +41,7 @@ public class Database {
      * Adds a new account to the Treemap using the name of the customer as key and the class CurrentAccount as value
      *
      * @param customerName_ - passes the name of the customer entered by the user, for which an account should be created
-     * @exception IllegalAccessError - reports to the user either that the referenced customer does not exist, or that he already owns an account
+     * @throws IllegalAccessError - reports to the user either if the referenced customer does not exist, or if he already owns an account. In both cases no account is created.
      */
     public void addAccount(String customerName_) throws IllegalAccessError {
 
@@ -62,6 +62,15 @@ public class Database {
 
     }
 
+    /**
+     * Deposits the amount entered by the user onto the account of the customer referenced by the user
+     *
+     * @param customerName_ - passes the name of the customer onto whose account the deposit goes.
+     *                      This works because every customer can have only one account, and it's a lot more user-friendly than entering an IBAN.
+     *                      When extending the program to other types of accounts like credit cards, this needs to be updated.
+     * @param amount_ - int value that simply gets added to the current balance
+     * @throws IllegalAccessError - reports to the user in case the referenced customer does not exist
+     */
     public void deposit(String customerName_, int amount_) throws IllegalAccessError {
 
         if (treeMapOfAllCurrentAccount.containsKey(customerName_)) {
@@ -75,16 +84,20 @@ public class Database {
         else throw new IllegalAccessError ("Kontozugriff nicht möglich. Geben Sie einen existierenden Kunden ein.");
     }
 
+    /**
+     * Displays all customers with their balances and IBANs while updating the name of the bank
+     *
+     * @throws NullPointerException - reports to the user when there is less than one complete entry in the list to show
+     */
     public void showAll() throws NullPointerException {
 
-        try {
-            System.out.println("Hier sehen Sie alle Kunden der " + BankInstitution.INSTANCE.getNameOfBank() + " mit ihren Kontoständen: ");
-            BiConsumer<String, CurrentAccount> outputOfAllCurrentAccounts = (key, value) -> System.out.println(key + " hat "  + value.getBalance() + "€" + " auf Konto " + value.getIBANOfCurrentAccount());
-            treeMapOfAllCurrentAccount.forEach(outputOfAllCurrentAccounts);
-
+        if (treeMapOfAllCurrentAccount.isEmpty()) {
+            throw new NullPointerException("Datenzugriff nicht möglich. Haben Sie mindestens einen Kunden und einen Account für diesen angelegt?");
         }
-        catch (NullPointerException e) {
-            throw new NullPointerException("Datenzugriff nicht möglich. Haben Sie alles Nötige angelegt?");
+        else {
+            System.out.println("Hier sehen Sie alle Kunden der " + BankInstitution.INSTANCE.getNameOfBank() + " mit ihren Kontoständen: ");
+            BiConsumer<String, CurrentAccount> outputOfAllCurrentAccounts = (key, value) -> System.out.println(key + " hat " + value.getBalance() + "€" + " auf Konto " + value.getIBANOfCurrentAccount());
+            treeMapOfAllCurrentAccount.forEach(outputOfAllCurrentAccounts);
         }
     }
 
