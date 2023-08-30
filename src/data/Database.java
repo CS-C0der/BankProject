@@ -9,6 +9,9 @@ import java.util.LinkedList;
 import java.util.TreeMap;
 import java.util.function.BiConsumer;
 
+/**
+ * Handles data storage, access and updating
+ */
 public class Database {
 
     private TreeMap<String, CurrentAccount> treeMapOfAllCurrentAccount = new TreeMap<String, CurrentAccount>();
@@ -21,7 +24,7 @@ public class Database {
      * @param customerName_ - passes the name of the customer entered by the user
      * @throws IllegalArgumentException - reports to the user that this customer exists already
      */
-    public void addCustomer(String customerName_) throws IllegalArgumentException {
+    public void addCustomer(String customerName_) throws IllegalAccessError {
 
         boolean alreadyUsed = false;
         for (BankCustomer customerForAccount : listOfAllBankCustomer) {
@@ -34,11 +37,12 @@ public class Database {
             this.listOfAllBankCustomer.add(newCustomer);
             System.out.println("Neuer Kunde " + newCustomer.getNameOfBankCustomer() + " erfolgreich eingetragen.");
         }
-        else throw new IllegalArgumentException ("Kunde existiert bereits.");
+        else throw new IllegalAccessError ("Dieser Kunde existiert bereits.");
     }
 
     /**
-     * Adds a new account to the Treemap using the name of the customer as key and the class CurrentAccount as value
+     * Adds a new account to the Treemap using the name of the customer as key and the class CurrentAccount as value.
+     * This option is separated from adding a customer because in the future, a customer might pick his selection from a variety of account types
      *
      * @param customerName_ - passes the name of the customer entered by the user, for which an account should be created
      * @throws IllegalAccessError - reports to the user either if the referenced customer does not exist, or if he already owns an account. In both cases no account is created.
@@ -81,21 +85,29 @@ public class Database {
                 }
             }
         }
-        else throw new IllegalAccessError ("Das hat leider nicht geklappt. Bitte geben Sie einen existierenden Kunden ein.");
+        else throw new IllegalAccessError ("Das hat leider nicht geklappt. Stellen Sie sicher, dass der Kunde und ein Konto für ihn angelegt sind.");
     }
 
     /**
-     * Displays all customers with their balances and IBANs while updating the name of the bank
+     * Displays in a first list all customers, regardless to whether they have an account.
+     * Displays in a second list all customers with their balances and IBANs.
+     * References to the current name of the bank.
      *
      * @throws NullPointerException - reports to the user when there is less than one complete entry in the list to show
      */
     public void showAll() throws NullPointerException {
 
         if (treeMapOfAllCurrentAccount.isEmpty()) {
-            throw new NullPointerException("Das hat leider nicht geklappt. Haben Sie mindestens einen Kunden und einen Account für diesen angelegt?");
+            throw new NullPointerException("Das hat leider nicht geklappt. Haben Sie mindestens einen Kunden und ein Konto für diesen angelegt?");
         }
         else {
-            System.out.println("Hier sehen Sie alle Kunden mit Accounts bei der " + BankInstitution.INSTANCE.getNameOfBank() + " mit ihren Kontoständen: ");
+            System.out.println("Hier sehen Sie alle Kunden der " + BankInstitution.INSTANCE.getNameOfBank() + ":");
+            for (BankCustomer customerToPrint : listOfAllBankCustomer) {
+                System.out.println(customerToPrint.getNameOfBankCustomer());
+            }
+            System.out.println();
+
+            System.out.println("Hier sehen Sie alle Kunden mit Kontos bei der " + BankInstitution.INSTANCE.getNameOfBank() + " mit ihren Kontoständen: ");
             BiConsumer<String, CurrentAccount> outputOfAllCurrentAccounts = (key, value) -> System.out.println(key + " besitzt " + value.getBalance() + "€" + " auf Konto " + value.getIBANOfCurrentAccount());
             treeMapOfAllCurrentAccount.forEach(outputOfAllCurrentAccounts);
         }

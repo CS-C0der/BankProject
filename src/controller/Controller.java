@@ -12,6 +12,9 @@ public class Controller {
      *
      * @param args - Application startup arguments
      * @throws Exception - passes exception handlings thrown in the run method
+     *
+     * @since 2023
+     * @author Christian Schöpf
      */
     public static void main(String[] args) throws Exception {
 
