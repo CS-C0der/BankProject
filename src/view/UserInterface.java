@@ -20,18 +20,37 @@ public enum UserInterface {
     private String userInputDepositAccount;
     private int navigation;
     private String[] options = {"Bank umbenennen", "Neuer Kunde", "Neuer Account", "Geld einzahlen", "Bestand anzeigen", "Beenden"};
+    private String dialogReturn;
+    private String errMessageNullpointer = "Das hat leider nicht geklappt. Haben Sie alles Nötige angelegt?";
+    private String errMessageBlank = "Bitte stellen Sie sicher, dass Ihre Eingabe etwas enthält.";
 
+    /**
+     * Runs the UserInterface with a central Option Dialog from which various actions can be performed
+     *
+     * @param database - the local java database is initialised in the main method and passed here, so that all data operations can be performed from here
+     * @return - passes the boolean indicating whether the application is still running (so this method gets recalled from the main method) or terminated
+     * @throws Exception - in this method, all exceptions (thrown in other functions that were called from here) are caught and error messages printed
+     */
     public boolean run(Database database) throws Exception {
 
-        navigation = showOptionDialog(null, "Was möchten Sie tun?", "Willkommen bei der " + BankInstitution.INSTANCE.getNameOfBank(), 0, JOptionPane.QUESTION_MESSAGE,
+        /**
+         * Provides a choice of buttons saved under "options" and displays a welcome message with the name of the bank (which can be changed by the user)
+         */
+        navigation = showOptionDialog(null, "Was möchten Sie tun?", "Willkommen bei der " + BankInstitution.INSTANCE.getNameOfBank(), 0, 3,
                 null, options, "Neue Bank");
 
+        /**
+         * The return value of the option dialog, saved as "navigation", determines what to do next
+         */
         switch (navigation) {
             case 0:
 
                 try {
-                    setUserInputBank(showInputDialog("Welchen Namen soll Ihre Bank in Zukunft tragen?"));
-                    BankInstitution.INSTANCE.setNameOfBank(getUserInputBank());
+                    dialogReturn = showInputDialog("Welchen Namen soll Ihre Bank in Zukunft tragen?");
+                    if (dialogReturn!=null) {
+                        setUserInputBank(dialogReturn);
+                        BankInstitution.INSTANCE.setNameOfBank(getUserInputBank());
+                    }
                 } catch (IOException | NullPointerException e) {
                     System.err.println(e.getMessage());
                 }
@@ -40,8 +59,11 @@ public enum UserInterface {
             case 1:
 
                 try {
-                    setUserInputCustomer(showInputDialog("Bitte geben Sie den Namen des neuen Kunden ein."));
-                    database.addCustomer(getUserInputCustomer());
+                    dialogReturn = showInputDialog("Bitte geben Sie den Namen des neuen Kunden ein.");
+                    if (dialogReturn!=null) {
+                        setUserInputCustomer(dialogReturn);
+                        database.addCustomer(getUserInputCustomer());
+                    }
                 } catch (IOException | NullPointerException e) {
                     System.err.println(e.getMessage());
                 }
@@ -50,8 +72,11 @@ public enum UserInterface {
             case 2:
 
                 try {
-                    setUserInputAccount(showInputDialog("Für welchen Kunden möchten Sie einen Account anlegen?"));
-                    database.addAccount(getUserInputAccount());
+                    dialogReturn = showInputDialog("Für welchen Kunden möchten Sie einen Account anlegen?");
+                    if (dialogReturn!=null) {
+                        setUserInputAccount(dialogReturn);
+                        database.addAccount(getUserInputAccount());
+                    }
                 } catch (IOException | IllegalAccessError | NullPointerException e) {
                     System.err.println(e.getMessage());
                 }
@@ -60,9 +85,15 @@ public enum UserInterface {
             case 3:
 
                 try {
-                    setUserInputDepositAccount(showInputDialog("Welcher Kunde möchte einzahlen?"));
-                    setUserInputDepositAmount(showInputDialog("Wie viel Geld möchten Sie einzahlen?"));
-                    database.deposit(getUserInputDepositAccount(), getUserInputDepositAmount());
+                    dialogReturn = showInputDialog(("Welcher Kunde möchte einzahlen?"));
+                    if (dialogReturn!=null) {
+                        setUserInputDepositAccount(dialogReturn);
+                        dialogReturn = showInputDialog(("Welcher Betrag soll eingezahlt werden?"));
+                        if (dialogReturn!=null) {
+                            setUserInputDepositAmount(dialogReturn);
+                            database.deposit(getUserInputDepositAccount(), getUserInputDepositAmount());
+                        }
+                    }
                 } catch (IOException | IllegalArgumentException | IllegalAccessError | NullPointerException e) {
                     System.err.println(e.getMessage());
                 }
@@ -93,12 +124,12 @@ public enum UserInterface {
 
        try {
             if (userInputBank.isBlank()) {
-                throw new IOException("Ihre Eingabe muss etwas enthalten.");
+                throw new IOException(errMessageBlank);
             }
             else this.userInputBank = userInputBank;
         }
         catch (NullPointerException e){
-            throw new NullPointerException("Zugriff nicht möglich. Haben Sie alles Nötige angelegt?");
+            throw new NullPointerException(errMessageNullpointer);
         }
     }
 
@@ -110,12 +141,12 @@ public enum UserInterface {
 
         try {
             if (userInputCustomer.isBlank()) {
-                throw new IOException("Ihre Eingabe muss etwas enthalten.");
+                throw new IOException(errMessageBlank);
             }
             else this.userInputCustomer = userInputCustomer;
         }
         catch (NullPointerException e){
-            throw new NullPointerException("Zugriff nicht möglich. Haben Sie alles Nötige angelegt?");
+            throw new NullPointerException(errMessageNullpointer);
         }
 
     }
@@ -128,12 +159,12 @@ public enum UserInterface {
 
         try {
             if (userInputAccount.isBlank()) {
-                throw new IOException("Ihre Eingabe muss etwas enthalten.");
+                throw new IOException(errMessageBlank);
             }
             else this.userInputAccount = userInputAccount;
         }
         catch (NullPointerException e){
-            throw new NullPointerException("Zugriff nicht möglich. Haben Sie alles Nötige angelegt?");
+            throw new NullPointerException(errMessageNullpointer);
         }
     }
 
@@ -145,7 +176,7 @@ public enum UserInterface {
 
         try {
             if (userInputDepositAmount.isBlank()) {
-                throw new IOException("Ihre Eingabe muss etwas enthalten.");
+                throw new IOException(errMessageBlank);
             }
             else this.userInputDepositAmount = Integer.parseInt(userInputDepositAmount);
         }
@@ -153,7 +184,7 @@ public enum UserInterface {
             throw new NumberFormatException("Sie dürfen nur ganze Zahlen eingeben.");
         }
         catch (NullPointerException e){
-            throw new NullPointerException("Zugriff nicht möglich. Haben Sie alles Nötige angelegt?");
+            throw new NullPointerException(errMessageNullpointer);
         }
         if (this.userInputDepositAmount <= 0) {
             throw new NumberFormatException("Sie dürfen nur positive Zahlen eingeben.");
@@ -167,12 +198,12 @@ public enum UserInterface {
     public void setUserInputDepositAccount(String userInputDepositAccount)  throws IOException, NullPointerException {
         try {
             if (userInputAccount.isBlank()) {
-                throw new IOException("Ihre Eingabe muss etwas enthalten.");
+                throw new IOException(errMessageBlank);
             }
             else this.userInputDepositAccount = userInputDepositAccount;
         }
         catch (NullPointerException e){
-            throw new NullPointerException("Zugriff nicht möglich. Haben Sie alles Nötige angelegt?");
+            throw new NullPointerException(errMessageNullpointer);
         }
 
     }

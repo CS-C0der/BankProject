@@ -81,7 +81,7 @@ public class Database {
                 }
             }
         }
-        else throw new IllegalAccessError ("Kontozugriff nicht möglich. Geben Sie einen existierenden Kunden ein.");
+        else throw new IllegalAccessError ("Das hat leider nicht geklappt. Bitte geben Sie einen existierenden Kunden ein.");
     }
 
     /**
@@ -92,11 +92,11 @@ public class Database {
     public void showAll() throws NullPointerException {
 
         if (treeMapOfAllCurrentAccount.isEmpty()) {
-            throw new NullPointerException("Datenzugriff nicht möglich. Haben Sie mindestens einen Kunden und einen Account für diesen angelegt?");
+            throw new NullPointerException("Das hat leider nicht geklappt. Haben Sie mindestens einen Kunden und einen Account für diesen angelegt?");
         }
         else {
-            System.out.println("Hier sehen Sie alle Kunden der " + BankInstitution.INSTANCE.getNameOfBank() + " mit ihren Kontoständen: ");
-            BiConsumer<String, CurrentAccount> outputOfAllCurrentAccounts = (key, value) -> System.out.println(key + " hat " + value.getBalance() + "€" + " auf Konto " + value.getIBANOfCurrentAccount());
+            System.out.println("Hier sehen Sie alle Kunden mit Accounts bei der " + BankInstitution.INSTANCE.getNameOfBank() + " mit ihren Kontoständen: ");
+            BiConsumer<String, CurrentAccount> outputOfAllCurrentAccounts = (key, value) -> System.out.println(key + " besitzt " + value.getBalance() + "€" + " auf Konto " + value.getIBANOfCurrentAccount());
             treeMapOfAllCurrentAccount.forEach(outputOfAllCurrentAccounts);
         }
     }
