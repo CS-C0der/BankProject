@@ -101,7 +101,8 @@ public enum UserInterface {
                     System.err.println(e.getMessage());
                 }
             }
-            case 5 -> {
+            // the default case handles clicking the exit button as well as the "x" on top right
+            default -> {
                 System.out.println("Vielen Dank für Ihren Besuch. Beehren Sie uns bald wieder.");
                 // terminates application by returning "false" to the loop in main method
                 return false;
