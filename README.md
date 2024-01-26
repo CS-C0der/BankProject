@@ -4,7 +4,7 @@ A banking application written in java. The user can rename his bank, add custome
 
 ## Tech ##
 
-This project showcases OOP, data storage and an MVC structure. User-friendly communication and handling of errors combined with an intuitive Swing GUI provide a great user experience.  
+This project showcases OOP, data storage and an MVC structure. User-friendly communication and handling of exceptions combined with an intuitive Swing GUI provide a great user experience.  
 The code uses only java without any dependencies. Therefore it performs at high speed and is easy to transfer and develop further. Clean code principles are applied in various ways.
 
 ## Presentation ##
