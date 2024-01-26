@@ -1,4 +1,4 @@
-# About #
+# Introduction #
 
 A banking application written in java. The user can rename his bank, add customers and accounts as well as deposit money and display everything. 
 
