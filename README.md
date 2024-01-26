@@ -1,6 +1,6 @@
 ## Presentation ##
 
-A full presentation of the functionalities of the projects and the thinking behind it can be viewed here:
+A full presentation of the functionalities of this project and the thinking behind it can be viewed here:
 
 https://www.youtube.com/watch?v=Wbdmvy40pyc
 
