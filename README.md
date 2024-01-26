@@ -1,3 +1,7 @@
+### About ###
+
+A banking application written in java. The user can rename his bank, add customers and accounts as well as deposit money and display everything. This project showcases a variety of aspects of java programming within a clear and concise structure. 
+
 ## Presentation ##
 
 A full presentation of the functionalities of this project and the thinking behind it can be viewed here:
