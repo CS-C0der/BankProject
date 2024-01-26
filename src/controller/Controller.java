@@ -7,7 +7,7 @@ public class Controller {
 
     /**
      * Launches the application.
-     * Initialises Database first.
+     * Initialises the database first.
      * Runs UserInterface's "run" method until program is exited by passing the return value "false"
      *
      * @param args - Application startup arguments
